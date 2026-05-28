@@ -1,0 +1,21 @@
+# Virtual environments
+.venv/
+venv/
+bin/
+include/
+lib/
+pyvenv.cfg
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Runtime data
+data/
+local_reports/
+
+# OS/editor noise
+.DS_Store
+.idea/
+.vscode/

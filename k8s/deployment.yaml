@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appointment-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: appointment-service
+  template:
+    metadata:
+      labels:
+        app: appointment-service
+    spec:
+      containers:
+        - name: appointment-service
+          image: appointment-service:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8002
+          envFrom:
+            - configMapRef:
+                name: appointment-service-config
+            - secretRef:
+                name: appointment-service-secret
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8002
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8002
